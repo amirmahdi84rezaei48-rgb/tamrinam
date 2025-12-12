@@ -1,0 +1,66 @@
+
+
+using System;
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== تمرین ۱: شمارش اعداد زوج و فرد ===");
+        Console.WriteLine("لطفاً ۱۰ عدد وارد کنید (هر عدد رو با Enter بزن):");
+
+        int zoje = 0;   // شمارنده اعداد زوج
+        int fard = 0;   // شمارنده اعداد فرد
+
+        for (int i = 1; i <= 10; i++)
+        {
+            Console.Write($"عدد {i}: ");
+            int adad = Convert.ToInt32(Console.ReadLine());
+
+            if (adad % 2 == 0)
+            {
+                zoje++;  // زوج بود
+            }
+            else
+            {
+                fard++;  // فرد بود
+            }
+        }
+
+        Console.WriteLine("\n--- نتیجه ---");
+        Console.WriteLine($"تعداد اعداد زوج: {zoje}");
+        Console.WriteLine($"تعداد اعداد فرد: {fard}");
+
+
+  
+
+
+        Console.WriteLine("\n=== تمرین ۲: جستجوی عدد ۲ ===");
+        Console.WriteLine("حالا ۵ عدد وارد کنید:");
+
+        bool vojod_darad = false;  // آیا عدد ۲ هست؟
+
+        for (int i = 1; i <= 5; i++)
+        {
+            Console.Write($"عدد {i}: ");
+            int adad = Convert.ToInt32(Console.ReadLine());
+
+            if (adad == 2)
+            {
+                vojod_darad = true;  // پیدا شد!
+            }
+        }
+
+        Console.WriteLine("\n--- نتیجه ---");
+        if (vojod_darad)
+        {
+            Console.WriteLine("عدد ۲ وجود دارد");
+        }
+        else
+        {
+            Console.WriteLine("عدد ۲ وجود ندارد");
+        }
+
+        Console.WriteLine("\nبرای خروج، یه دکمه بزن...");
+        Console.ReadKey();
+    }
+}
