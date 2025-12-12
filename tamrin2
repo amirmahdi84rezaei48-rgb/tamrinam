@@ -1,0 +1,47 @@
+
+
+using System;
+namespace Tamrin1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("عدد را وارد کنید: ");
+            int num = Convert.ToInt32(Console.ReadLine());
+            if (num < 10 && num % 2 == 0)
+            {
+                Console.WriteLine("TRUE");
+            }
+            Console.ReadKey();
+        }
+    }
+}
+
+ 
+
+using System;
+namespace Tamrin2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("عدد را وارد کنید: ");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            if (num % 7 == 0)
+            {
+                Console.WriteLine("YES");
+            }
+            else
+            {
+                int result = num * 3;
+                Console.WriteLine("خروجی: " + result);
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
+
