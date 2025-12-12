@@ -1,0 +1,37 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("سلام! یه جمله وارد کن تا نوعش رو بگم:");
+        string jomle = Console.ReadLine();
+        if (string.IsNullOrEmpty(jomle))
+        {
+            Console.WriteLine("هیچ جمله‌ای وارد نکردی!");
+            return;
+        }
+        char akhar = jomle[jomle.Length - 1];
+        if (akhar == '!' || akhar == '؟')
+        {
+            Console.WriteLine("این جمله، جمله خبری هست! (END!)");
+        }
+        else if (akhar == 'I' && jomle.Length >= 3)
+        {
+            string seAkhar = jomle.Substring(jomle.Length - 3, 3);
+            if (seAkhar == "H-I" || seAkhar == "E-H-I")
+            {
+                Console.WriteLine("این جمله، جمله پرسشی هست! (E-H-I یا H-I)");
+            }
+            else
+            {
+                Console.WriteLine("این یه جمله عادی هست.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("این یه جمله عادی هست.");
+        }
+        Console.WriteLine("\nبرای خروج دکمه‌ای بزن...");
+        Console.ReadKey();
+    }
+}
