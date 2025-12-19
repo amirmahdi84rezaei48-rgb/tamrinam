@@ -1,0 +1,135 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+class Student
+{
+    public string studentNumber;
+    public string name;
+    public string family;
+    public string major;
+}
+
+class Program
+{
+    static Dictionary<string, Student> students = new Dictionary<string, Student>();
+    static string path = @"C:\UNI.txt";
+
+    static void Main()
+    {
+        LoadData();
+
+        while (true)
+        {
+            Console.WriteLine("1- ورود اطلاعات دانشجو");
+            Console.WriteLine("2- نمایش اطلاعات دانشجو");
+            Console.WriteLine("3- حذف دانشجو");
+            Console.WriteLine("4- خروج");
+            Console.Write("انتخاب کنید: ");
+
+            string choice = Console.ReadLine();
+
+            if (choice == "1")
+                AddStudent();
+            else if (choice == "2")
+                ShowStudents();
+            else if (choice == "3")
+                DeleteStudent();
+            else if (choice == "4")
+                break;
+            else
+                Console.WriteLine("گزینه اشتباه است");
+        }
+
+        SaveData();
+    }
+
+    static void AddStudent()
+    {
+        Student s = new Student();
+
+        Console.Write("شماره دانشجویی: ");
+        s.studentNumber = Console.ReadLine();
+
+        Console.Write("نام: ");
+        s.name = Console.ReadLine();
+
+        Console.Write("نام خانوادگی: ");
+        s.family = Console.ReadLine();
+
+        Console.Write("رشته: ");
+        s.major = Console.ReadLine();
+
+        students[s.studentNumber] = s;
+        SaveData();
+
+        Console.WriteLine("دانشجو ثبت شد");
+    }
+
+    static void ShowStudents()
+    {
+        foreach (Student s in students.Values)
+        {
+            Console.WriteLine(
+                s.studentNumber + " " +
+                s.name + " " +
+                s.family + " " +
+                s.major
+            );
+        }
+    }
+
+    static void DeleteStudent()
+    {
+        Console.Write("شماره دانشجویی برای حذف: ");
+        string num = Console.ReadLine();
+
+        if (students.Remove(num))
+        {
+            SaveData();
+            Console.WriteLine("دانشجو حذف شد");
+        }
+        else
+        {
+            Console.WriteLine("دانشجو پیدا نشد");
+        }
+    }
+
+    static void SaveData()
+    {
+        StreamWriter sw = new StreamWriter(path);
+
+        foreach (Student s in students.Values)
+        {
+            sw.WriteLine(
+                s.studentNumber + "," +
+                s.name + "," +
+                s.family + "," +
+                s.major
+            );
+        }
+
+        sw.Close();
+    }
+
+    static void LoadData()
+    {
+        if (!File.Exists(path))
+            return;
+
+        string[] lines = File.ReadAllLines(path);
+
+        foreach (string line in lines)
+        {
+            string[] data = line.Split(',');
+
+            Student s = new Student();
+            s.studentNumber = data[0];
+            s.name = data[1];
+            s.family = data[2];
+            s.major = data[3];
+
+            students[s.studentNumber] = s;
+        }
+    }
+}
